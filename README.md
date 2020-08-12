@@ -16,7 +16,7 @@ Add this to you package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_cupertino_date_picker: ^1.0.26+2
+  flutter_cupertino_date_picker_fork: ^1.0.1
 ```
 
 #### 2\. Install
@@ -32,7 +32,7 @@ $ flutter packages get
 Import in Dart code:
 
 ```dart
-import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
+import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker_fork.dart';
 ```
 
 #### 4\. Display DatePicker
@@ -309,54 +309,3 @@ const DateTimePickerTheme({
   this.itemTextStyle: DATETIME_PICKER_ITEM_TEXT_STYLE,
 });
 ```
-
-## Example
-
-[Example sources](https://github.com/wuzhendev/flutter-cupertino-date-picker/tree/master/example)
-
-[Example APK](https://raw.githubusercontent.com/wuzhendev/assets/master/flutter-datepicker/flutter_cupertino_date_picker_v1.0.8.apk)
-
-![Example APK Download](https://github.com/wuzhendev/assets/blob/master/flutter-datepicker/date_picker_qrcode_v1.0.8.png?raw=true)
-
-### DatePicker
-
-![Example: DatePicker][1]
-
-![Example: DatePickerWidget][2]
-
-### TimePicker
-
-![Example: TimePicker][3]
-
-![Example: TimePickerWidget][4]
-
-### DateTimePicker
-
-![Example: DateTimePicker][5]
-
-![Example: DateTimePickerWidget][6]
-
-## License
-
-```
-Copyright 2018 wuzhen
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
-
-[1]:https://github.com/wuzhendev/assets/blob/master/flutter-datepicker/flutter_date_picker_14.jpg?raw=true
-[2]:https://github.com/wuzhendev/assets/blob/master/flutter-datepicker/flutter_date_picker_15.jpg?raw=true
-[3]:https://github.com/wuzhendev/assets/blob/master/flutter-datepicker/flutter_date_picker_16.jpg?raw=true
-[4]:https://github.com/wuzhendev/assets/blob/master/flutter-datepicker/flutter_date_picker_17.jpg?raw=true
-[5]:https://github.com/wuzhendev/assets/blob/master/flutter-datepicker/flutter_date_picker_18.jpg?raw=true
-[6]:https://github.com/wuzhendev/assets/blob/master/flutter-datepicker/flutter_date_picker_19.jpg?raw=true
