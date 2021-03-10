@@ -9,3 +9,7 @@
 ## [1.0.2] 
 
 * support flutter v2.0
+
+## [1.0.3] 
+
+* change pubspec.yaml
