@@ -148,10 +148,10 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
     // display the title widget
     if (widget.pickerTheme.title != null || widget.pickerTheme.showTitle) {
       Widget titleWidget = DatePickerTitleWidget(
+        () => _onPressedCancel(),
+        () => _onPressedConfirm(),
         pickerTheme: widget.pickerTheme,
         locale: widget.locale,
-        onCancel: () => _onPressedCancel(),
-        onConfirm: () => _onPressedConfirm(),
       );
       return Column(children: <Widget>[titleWidget, pickerWidget]);
     }
@@ -211,7 +211,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
 
   /// render the picker widget of year、month and day
   Widget _renderDatePickerWidget() {
-    List<Widget> pickers = List<Widget>();
+    List<Widget> pickers = [];
     List<String> formatArr = DateTimeFormatter.splitDateFormat(
         widget.dateFormat,
         mode: DateTimePickerMode.datetime);
@@ -221,10 +221,10 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
     // render day picker column
     String dayFormat = formatArr.removeAt(0);
     Widget dayPickerColumn = _renderDatePickerColumnComponent(
-      scrollCtrl: _dayScrollCtrl,
-      valueRange: _dayRange,
-      format: dayFormat,
-      valueChanged: (value) {
+      _dayScrollCtrl,
+      _dayRange,
+      dayFormat,
+      (value) {
         _changeDaySelection(value);
       },
       flex: dayFlex,
@@ -238,12 +238,10 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
       List<int> valueRange = _findPickerItemRange(format);
 
       Widget pickerColumn = _renderDatePickerColumnComponent(
-        scrollCtrl: _findScrollCtrl(format),
-        valueRange: valueRange,
-        format: format,
-        flex: 1,
-        minuteDivider: widget.minuteDivider,
-        valueChanged: (value) {
+        _findScrollCtrl(format),
+        valueRange,
+        format,
+        (value) {
           if (format.contains('H')) {
             _changeHourSelection(value);
           } else if (format.contains('m')) {
@@ -252,6 +250,8 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
             _changeSecondSelection(value);
           }
         },
+        flex: 1,
+        minuteDivider: widget.minuteDivider,
       );
       pickers.add(pickerColumn);
     });
@@ -259,11 +259,11 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween, children: pickers);
   }
 
-  Widget _renderDatePickerColumnComponent({
-    @required FixedExtentScrollController scrollCtrl,
-    @required List<int> valueRange,
-    @required String format,
-    @required ValueChanged<int> valueChanged,
+  Widget _renderDatePickerColumnComponent(
+    FixedExtentScrollController scrollCtrl,
+    List<int> valueRange,
+    String format,
+    ValueChanged<int> valueChanged, {
     int minuteDivider,
     int flex,
     IndexedWidgetBuilder itemBuilder,

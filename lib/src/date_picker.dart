@@ -100,7 +100,7 @@ class DatePicker {
         onCancel: onCancel,
         onChange: onChange,
         onConfirm: onConfirm,
-        theme: Theme.of(context, shadowThemeOnly: true),
+        theme: Theme.of(context),
         barrierLabel:
             MaterialLocalizations.of(context).modalBarrierDismissLabel,
         minuteDivider: minuteDivider,
@@ -174,7 +174,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     Widget bottomSheet = new MediaQuery.removePadding(
       context: context,
       removeTop: true,
-      child: _DatePickerComponent(route: this, pickerHeight: height),
+      child: _DatePickerComponent(this, height),
     );
 
     if (theme != null) {
@@ -188,7 +188,7 @@ class _DatePickerComponent extends StatelessWidget {
   final _DatePickerRoute route;
   final double _pickerHeight;
 
-  _DatePickerComponent({Key key, @required this.route, @required pickerHeight})
+  _DatePickerComponent(this.route, pickerHeight)
       : this._pickerHeight = pickerHeight;
 
   @override

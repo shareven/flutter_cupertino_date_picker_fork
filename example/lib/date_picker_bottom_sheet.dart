@@ -34,7 +34,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
   @override
   Widget build(BuildContext context) {
     // create locale radio list
-    List<Widget> radios = List<Widget>();
+    List<Widget> radios = [];
     _locales.forEach((locale) {
       radios.add(Container(
         margin: EdgeInsets.only(right: 8.0),

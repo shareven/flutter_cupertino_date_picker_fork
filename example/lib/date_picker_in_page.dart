@@ -119,7 +119,7 @@ DateTimePickerTheme(
                       style: TextStyle(fontSize: 14.0),
                     ),
                     actions: <Widget>[
-                      new FlatButton(
+                      new TextButton(
                         child: new Text("OK"),
                         onPressed: () {
                           Navigator.of(context).pop();

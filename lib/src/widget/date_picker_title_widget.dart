@@ -9,12 +9,12 @@ import '../i18n/date_picker_i18n.dart';
 /// @author dylan wu
 /// @since 2019-05-16
 class DatePickerTitleWidget extends StatelessWidget {
-  DatePickerTitleWidget({
+  DatePickerTitleWidget(
+    this.onCancel,
+    this.onConfirm, {
     Key key,
     this.pickerTheme,
     this.locale,
-    @required this.onCancel,
-    @required this.onConfirm,
   }) : super(key: key);
 
   final DateTimePickerTheme pickerTheme;
@@ -63,8 +63,7 @@ class DatePickerTitleWidget extends StatelessWidget {
 
     return Container(
       height: pickerTheme.titleHeight,
-      child: FlatButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      child: TextButton(
         child: cancelWidget,
         onPressed: () => this.onCancel(),
       ),
@@ -95,8 +94,7 @@ class DatePickerTitleWidget extends StatelessWidget {
 
     return Container(
       height: pickerTheme.titleHeight,
-      child: FlatButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+      child: TextButton(
         child: confirmWidget,
         onPressed: () => this.onConfirm(),
       ),
