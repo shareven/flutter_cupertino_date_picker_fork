@@ -17,3 +17,11 @@
 ## [1.0.4] 
 
 * support Null-safety
+
+## [1.0.5] 
+
+* remove print from lib/src/widget/date_picker_widget.dart
+
+## [1.0.6] 
+
+* change readme.md
