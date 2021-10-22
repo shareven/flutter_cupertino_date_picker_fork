@@ -46,7 +46,7 @@ class _StringsZhCn extends _StringsI18n {
   }
 
   @override
-  List<String> getWeeksShort() {
+  List<String>? getWeeksShort() {
     return [
       "周一",
       "周二",
@@ -59,7 +59,7 @@ class _StringsZhCn extends _StringsI18n {
   }
 
   @override
-  List<String> getMonthsShort() {
+  List<String>? getMonthsShort() {
     
     return null;
   }

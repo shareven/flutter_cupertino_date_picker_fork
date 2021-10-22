@@ -13,3 +13,7 @@
 ## [1.0.3] 
 
 * change pubspec.yaml
+
+## [1.0.4] 
+
+* support Null-safety

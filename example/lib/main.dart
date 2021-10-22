@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,8 @@ class MyHomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
               child: Text("DatePicker Bottom Sheet", style: textStyle),
               onPressed: () {
                 Navigator.of(context)
@@ -45,7 +46,8 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
               child: Text("DatePicker In Page", style: textStyle),
               onPressed: () {
                 Navigator.of(context)
@@ -55,7 +57,8 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
               child: Text("TimePicker Bottom Sheet", style: textStyle),
               onPressed: () {
                 Navigator.of(context)
@@ -65,7 +68,8 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
               child: Text("TimePicker In Page", style: textStyle),
               onPressed: () {
                 Navigator.of(context)
@@ -75,7 +79,8 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
               child: Text("DateTimePicker Bottom Sheet", style: textStyle),
               onPressed: () {
                 Navigator.of(context)
@@ -85,7 +90,8 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue)),
               child: Text("DateTimePicker In Page", style: textStyle),
               onPressed: () {
                 Navigator.of(context)

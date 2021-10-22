@@ -40,17 +40,17 @@ class DatePicker {
   /// onConfirm: [DateValueCallback] pressed title confirm widget event
   static void showDatePicker(
     BuildContext context, {
-    DateTime minDateTime,
-    DateTime maxDateTime,
-    DateTime initialDateTime,
-    String dateFormat,
+    DateTime? minDateTime,
+    DateTime? maxDateTime,
+    DateTime? initialDateTime,
+    String? dateFormat,
     DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
     DateTimePickerMode pickerMode: DateTimePickerMode.date,
     DateTimePickerTheme pickerTheme: DateTimePickerTheme.Default,
-    DateVoidCallback onCancel,
-    DateVoidCallback onClose,
-    DateValueCallback onChange,
-    DateValueCallback onConfirm,
+    DateVoidCallback? onCancel,
+    DateVoidCallback? onClose,
+    DateValueCallback? onChange,
+    DateValueCallback? onConfirm,
     int minuteDivider = 1,
     bool onMonthChangeStartWithFirstDate = false,
   }) {
@@ -116,30 +116,30 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     this.maxDateTime,
     this.initialDateTime,
     this.dateFormat,
-    this.locale,
-    this.pickerMode,
-    this.pickerTheme,
+    required this.locale,
+    required this.pickerMode,
+    required this.pickerTheme,
     this.onCancel,
     this.onChange,
     this.onConfirm,
     this.theme,
-    this.barrierLabel,
-    this.minuteDivider,
-    RouteSettings settings,
+    required this.barrierLabel,
+    required this.minuteDivider,
+    RouteSettings? settings,
   }) : super(settings: settings);
 
-  final DateTime minDateTime, maxDateTime, initialDateTime;
-  final String dateFormat;
+  final DateTime? minDateTime, maxDateTime, initialDateTime;
+  final String? dateFormat;
   final DateTimePickerLocale locale;
   final DateTimePickerMode pickerMode;
   final DateTimePickerTheme pickerTheme;
-  final VoidCallback onCancel;
-  final DateValueCallback onChange;
-  final DateValueCallback onConfirm;
+  final VoidCallback? onCancel;
+  final DateValueCallback? onChange;
+  final DateValueCallback? onConfirm;
   final int minuteDivider;
-  final bool onMonthChangeStartWithFirstDate;
+  final bool? onMonthChangeStartWithFirstDate;
 
-  final ThemeData theme;
+  final ThemeData? theme;
 
   @override
   Duration get transitionDuration => const Duration(milliseconds: 200);
@@ -153,14 +153,14 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   @override
   Color get barrierColor => Colors.black54;
 
-  AnimationController _animationController;
+  AnimationController? _animationController;
 
   @override
   AnimationController createAnimationController() {
     assert(_animationController == null);
     _animationController =
-        BottomSheet.createAnimationController(navigator.overlay);
-    return _animationController;
+        BottomSheet.createAnimationController(navigator!.overlay!);
+    return _animationController!;
   }
 
   @override
@@ -178,7 +178,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     );
 
     if (theme != null) {
-      bottomSheet = new Theme(data: theme, child: bottomSheet);
+      bottomSheet = new Theme(data: theme!, child: bottomSheet);
     }
     return bottomSheet;
   }
@@ -241,11 +241,11 @@ class _DatePickerComponent extends StatelessWidget {
     }
     return new GestureDetector(
       child: new AnimatedBuilder(
-        animation: route.animation,
-        builder: (BuildContext context, Widget child) {
+        animation: route.animation!,
+        builder: (BuildContext context, Widget? child) {
           return new ClipRect(
             child: new CustomSingleChildLayout(
-              delegate: new _BottomPickerLayout(route.animation.value,
+              delegate: new _BottomPickerLayout(route.animation?.value,
                   contentHeight: _pickerHeight),
               child: pickerWidget,
             ),
@@ -257,9 +257,9 @@ class _DatePickerComponent extends StatelessWidget {
 }
 
 class _BottomPickerLayout extends SingleChildLayoutDelegate {
-  _BottomPickerLayout(this.progress, {this.contentHeight});
+  _BottomPickerLayout(this.progress, {required this.contentHeight});
 
-  final double progress;
+  final double? progress;
   final double contentHeight;
 
   @override
@@ -274,7 +274,8 @@ class _BottomPickerLayout extends SingleChildLayoutDelegate {
 
   @override
   Offset getPositionForChild(Size size, Size childSize) {
-    double height = size.height - childSize.height * progress;
+    if (progress == null) return new Offset(0.0, 0.0);
+    double height = size.height - childSize.height * progress!;
     return new Offset(0.0, height);
   }
 

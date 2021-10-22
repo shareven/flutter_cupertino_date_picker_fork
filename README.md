@@ -16,7 +16,7 @@ Add this to you package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_cupertino_date_picker_fork: ^1.0.3
+  flutter_cupertino_date_picker_fork: ^1.0.4
 ```
 
 #### 2\. Install
@@ -212,7 +212,7 @@ class _StringsEnUs extends _StringsI18n {
   }
 
   @override
-  List<String> getMonthsShort() {
+  List<String>? getMonthsShort() {
     // TODO return the array of month's short name [Jan, Feb ... Dec]. If return null, will substring the full name (max length is 3)
     return null;
   }
@@ -224,7 +224,7 @@ class _StringsEnUs extends _StringsI18n {
   }
 
   @override
-  List<String> getWeeksShort() {
+  List<String>? getWeeksShort() {
     // TODO return the array of week's short name [Mon, Tue ... Sun]
     return null;
   }

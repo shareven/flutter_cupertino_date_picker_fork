@@ -33,7 +33,7 @@ class _StringsPtBr extends _StringsI18n {
   }
 
   @override
-  List<String> getMonthsShort() {
+  List<String>? getMonthsShort() {
     return [
       "Jan.",
       "Fev.",
@@ -64,7 +64,7 @@ class _StringsPtBr extends _StringsI18n {
   }
 
   @override
-  List<String> getWeeksShort() {
+  List<String>? getWeeksShort() {
     return [
       "Seg",
       "Ter",

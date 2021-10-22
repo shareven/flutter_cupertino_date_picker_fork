@@ -33,7 +33,7 @@ class _StringsFr extends _StringsI18n {
   }
 
   @override
-  List<String> getMonthsShort() {
+  List<String>? getMonthsShort() {
     return [
       "Janv.",
       "Févr.",
@@ -64,7 +64,7 @@ class _StringsFr extends _StringsI18n {
   }
 
   @override
-  List<String> getWeeksShort() {
+  List<String>? getWeeksShort() {
     return [
       "Lun.",
       "Mar.",

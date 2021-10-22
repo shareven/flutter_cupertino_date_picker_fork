@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker_fork.dart';
 
 class DatePickerBottomSheet extends StatefulWidget {
-  DatePickerBottomSheet({Key key}) : super(key: key);
+  DatePickerBottomSheet({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _DatePickerBottomSheetState();
@@ -22,7 +22,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
   String _format = 'yyyy-MMMM-dd';
   TextEditingController _formatCtrl = TextEditingController();
 
-  DateTime _dateTime;
+  DateTime? _dateTime;
 
   @override
   void initState() {
@@ -44,9 +44,9 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
             Radio(
               value: locale,
               groupValue: _locale,
-              onChanged: (value) {
+              onChanged: (DateTimePickerLocale? value) {
                 setState(() {
-                  _locale = value;
+                  _locale = value!;
                 });
               },
             ),
@@ -59,7 +59,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
     });
 
     TextStyle hintTextStyle =
-        Theme.of(context).textTheme.subtitle1.apply(color: Color(0xFF999999));
+        Theme.of(context).textTheme.subtitle1!.apply(color: Color(0xFF999999));
     return Scaffold(
       appBar: AppBar(title: Text('DatePicker Bottom Sheet')),
       body: Container(
@@ -117,7 +117,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
                   value: _showTitle,
                   onChanged: (value) {
                     setState(() {
-                      _showTitle = value;
+                      _showTitle = value!;
                     });
                   },
                 )
@@ -162,7 +162,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
                   Container(
                     padding: EdgeInsets.only(left: 12.0),
                     child: Text(
-                      '${_dateTime.year}-${_dateTime.month.toString().padLeft(2, '0')}-${_dateTime.day.toString().padLeft(2, '0')}',
+                      '${_dateTime!.year}-${_dateTime!.month.toString().padLeft(2, '0')}-${_dateTime!.day.toString().padLeft(2, '0')}',
                       style: Theme.of(context).textTheme.headline6,
                     ),
                   ),

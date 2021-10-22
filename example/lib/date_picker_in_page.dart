@@ -6,7 +6,7 @@ import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker
 /// @author dylan wu
 /// @since 2019-05-10
 class DatePickerInPage extends StatefulWidget {
-  DatePickerInPage({Key key}) : super(key: key);
+  DatePickerInPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _DatePickerInPageState();
@@ -18,7 +18,7 @@ const String INIT_DATETIME = '2019-05-17';
 const String DATE_FORMAT = 'MM月|d日,yyyy年';
 
 class _DatePickerInPageState extends State<DatePickerInPage> {
-  DateTime _dateTime;
+  DateTime? _dateTime;
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _DatePickerInPageState extends State<DatePickerInPage> {
   @override
   Widget build(BuildContext context) {
     TextStyle hintTextStyle =
-        Theme.of(context).textTheme.subtitle1.apply(color: Color(0xFF999999));
+        Theme.of(context).textTheme.subtitle1!.apply(color: Color(0xFF999999));
     return Scaffold(
       appBar: AppBar(title: Text("DatePicker In Page")),
       body: Container(
@@ -90,7 +90,8 @@ class _DatePickerInPageState extends State<DatePickerInPage> {
                     width: 115.0,
                     child: Text('Date Format:', style: hintTextStyle),
                   ),
-                  Text(DATE_FORMAT, style: Theme.of(context).textTheme.subtitle1),
+                  Text(DATE_FORMAT,
+                      style: Theme.of(context).textTheme.subtitle1),
                 ],
               ),
             ),
@@ -178,9 +179,9 @@ DateTimePickerTheme(
                   padding: EdgeInsets.only(left: 12.0),
                   child: Text(
                     _dateTime != null
-                        ? '${_dateTime.year}-${_dateTime.month.toString().padLeft(2, '0')}-${_dateTime.day.toString().padLeft(2, '0')}'
+                        ? '${_dateTime!.year}-${_dateTime!.month.toString().padLeft(2, '0')}-${_dateTime!.day.toString().padLeft(2, '0')}'
                         : '',
-                    style: Theme.of(context).textTheme. headline6,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                 ),
               ],

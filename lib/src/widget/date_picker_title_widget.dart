@@ -12,9 +12,9 @@ class DatePickerTitleWidget extends StatelessWidget {
   DatePickerTitleWidget(
     this.onCancel,
     this.onConfirm, {
-    Key key,
-    this.pickerTheme,
-    this.locale,
+    Key? key,
+    required this.pickerTheme,
+    required this.locale,
   }) : super(key: key);
 
   final DateTimePickerTheme pickerTheme;
@@ -24,7 +24,7 @@ class DatePickerTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (pickerTheme.title != null) {
-      return pickerTheme.title;
+      return pickerTheme.title!;
     }
     return Container(
       height: pickerTheme.titleHeight,
@@ -48,7 +48,7 @@ class DatePickerTitleWidget extends StatelessWidget {
       }
     }
 
-    Widget cancelWidget = pickerTheme.cancel;
+    Widget? cancelWidget = pickerTheme.cancel;
     if (cancelWidget == null) {
       TextStyle textStyle = pickerTheme.cancelTextStyle ??
           TextStyle(
@@ -79,7 +79,7 @@ class DatePickerTitleWidget extends StatelessWidget {
       }
     }
 
-    Widget confirmWidget = pickerTheme.confirm;
+    Widget? confirmWidget = pickerTheme.confirm;
     if (confirmWidget == null) {
       TextStyle textStyle = pickerTheme.confirmTextStyle ??
           TextStyle(
@@ -87,7 +87,7 @@ class DatePickerTitleWidget extends StatelessWidget {
             fontSize: 16.0,
           );
       confirmWidget = Text(
-        DatePickerI18n.getLocaleDone(locale),
+        DatePickerI18n.getLocaleDone(locale) ?? '',
         style: textStyle,
       );
     }

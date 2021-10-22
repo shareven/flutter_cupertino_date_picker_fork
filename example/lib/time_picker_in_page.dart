@@ -6,7 +6,7 @@ import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker
 /// @author dylan wu
 /// @since 2019-05-10
 class TimePickerInPage extends StatefulWidget {
-  TimePickerInPage({Key key}) : super(key: key);
+  TimePickerInPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _TimePickerInPageState();
@@ -18,7 +18,7 @@ const String INIT_DATETIME = '2019-05-17 18:13:15';
 const String DATE_FORMAT = 'HH时:mm分:s';
 
 class _TimePickerInPageState extends State<TimePickerInPage> {
-  DateTime _dateTime;
+  DateTime? _dateTime;
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _TimePickerInPageState extends State<TimePickerInPage> {
   @override
   Widget build(BuildContext context) {
     TextStyle hintTextStyle =
-        Theme.of(context).textTheme.subtitle1.apply(color: Color(0xFF999999));
+        Theme.of(context).textTheme.subtitle1!.apply(color: Color(0xFF999999));
     return Scaffold(
       appBar: AppBar(title: Text("TimePicker In Page")),
       body: Container(
@@ -91,7 +91,8 @@ class _TimePickerInPageState extends State<TimePickerInPage> {
                     width: 115.0,
                     child: Text('Date Format:', style: hintTextStyle),
                   ),
-                  Text(DATE_FORMAT, style: Theme.of(context).textTheme.subtitle1),
+                  Text(DATE_FORMAT,
+                      style: Theme.of(context).textTheme.subtitle1),
                 ],
               ),
             ),
@@ -125,9 +126,9 @@ class _TimePickerInPageState extends State<TimePickerInPage> {
                   padding: EdgeInsets.only(left: 12.0),
                   child: Text(
                     _dateTime != null
-                        ? '${_dateTime.hour.toString().padLeft(2, '0')}:${_dateTime.minute.toString().padLeft(2, '0')}:${_dateTime.second.toString().padLeft(2, '0')}'
+                        ? '${_dateTime!.hour.toString().padLeft(2, '0')}:${_dateTime!.minute.toString().padLeft(2, '0')}:${_dateTime!.second.toString().padLeft(2, '0')}'
                         : '',
-                    style: Theme.of(context).textTheme. headline6,
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                 ),
               ],

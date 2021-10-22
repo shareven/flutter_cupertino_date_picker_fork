@@ -46,7 +46,7 @@ class _StringsHu extends _StringsI18n {
   }
 
   @override
-  List<String> getWeeksShort() {
+  List<String>? getWeeksShort() {
     return [
       "H",
       "K",
@@ -59,7 +59,7 @@ class _StringsHu extends _StringsI18n {
   }
 
   @override
-  List<String> getMonthsShort() {
+  List<String>? getMonthsShort() {
     
     return null;
   }

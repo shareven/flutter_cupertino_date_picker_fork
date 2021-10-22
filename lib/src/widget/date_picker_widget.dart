@@ -18,7 +18,7 @@ const List<int> _solarMonthsOf31Days = const <int>[1, 3, 5, 7, 8, 10, 12];
 /// @since 2019-05-10
 class DatePickerWidget extends StatefulWidget {
   DatePickerWidget({
-    Key key,
+    Key? key,
     this.onMonthChangeStartWithFirstDate,
     this.minDateTime,
     this.maxDateTime,
@@ -35,13 +35,13 @@ class DatePickerWidget extends StatefulWidget {
     assert(minTime.compareTo(maxTime) < 0);
   }
 
-  final DateTime minDateTime, maxDateTime, initialDateTime;
-  final String dateFormat;
+  final DateTime? minDateTime, maxDateTime, initialDateTime;
+  final String? dateFormat;
   final DateTimePickerLocale locale;
   final DateTimePickerTheme pickerTheme;
 
-  final DateVoidCallback onCancel;
-  final DateValueCallback onChange, onConfirm;
+  final DateVoidCallback? onCancel;
+  final DateValueCallback? onChange, onConfirm;
   final onMonthChangeStartWithFirstDate;
 
   @override
@@ -50,18 +50,20 @@ class DatePickerWidget extends StatefulWidget {
 }
 
 class _DatePickerWidgetState extends State<DatePickerWidget> {
-  DateTime _minDateTime, _maxDateTime;
-  int _currYear, _currMonth, _currDay;
-  List<int> _yearRange, _monthRange, _dayRange;
-  FixedExtentScrollController _yearScrollCtrl, _monthScrollCtrl, _dayScrollCtrl;
+  DateTime _minDateTime = DateTime(0), _maxDateTime = DateTime(0);
+  int _currYear = 0, _currMonth = 0, _currDay = 0;
+  List<int> _yearRange = [], _monthRange = [], _dayRange = [];
+  FixedExtentScrollController _yearScrollCtrl = FixedExtentScrollController(),
+      _monthScrollCtrl = FixedExtentScrollController(),
+      _dayScrollCtrl = FixedExtentScrollController();
 
-  Map<String, FixedExtentScrollController> _scrollCtrlMap;
-  Map<String, List<int>> _valueRangeMap;
+  Map<String, FixedExtentScrollController> _scrollCtrlMap = Map();
+  Map<String, List<int>> _valueRangeMap = Map();
 
   bool _isChangeDateRange = false;
 
   _DatePickerWidgetState(
-      DateTime minDateTime, DateTime maxDateTime, DateTime initialDateTime) {
+      DateTime? minDateTime, DateTime? maxDateTime, DateTime? initialDateTime) {
     // handle current selected year、month、day
     DateTime initDateTime = initialDateTime ?? DateTime.now();
     this._currYear = initDateTime.year;
@@ -128,7 +130,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   /// pressed cancel widget
   void _onPressedCancel() {
     if (widget.onCancel != null) {
-      widget.onCancel();
+      widget.onCancel!();
     }
     Navigator.pop(context);
   }
@@ -137,7 +139,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   void _onPressedConfirm() {
     if (widget.onConfirm != null) {
       DateTime dateTime = DateTime(_currYear, _currMonth, _currDay);
-      widget.onConfirm(dateTime, _calcSelectIndexList());
+      widget.onConfirm!(dateTime, _calcSelectIndexList());
     }
     Navigator.pop(context);
   }
@@ -146,13 +148,13 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   void _onSelectedChange() {
     if (widget.onChange != null) {
       DateTime dateTime = DateTime(_currYear, _currMonth, _currDay);
-      widget.onChange(dateTime, _calcSelectIndexList());
+      widget.onChange!(dateTime, _calcSelectIndexList());
     }
   }
 
   /// find scroll controller by specified format
-  FixedExtentScrollController _findScrollCtrl(String format) {
-    FixedExtentScrollController scrollCtrl;
+  FixedExtentScrollController? _findScrollCtrl(String format) {
+    FixedExtentScrollController? scrollCtrl;
     _scrollCtrlMap.forEach((key, value) {
       if (format.contains(key)) {
         scrollCtrl = value;
@@ -163,7 +165,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
 
   /// find item value range by specified format
   List<int> _findPickerItemRange(String format) {
-    List<int> valueRange;
+    List<int> valueRange = [];
     _valueRangeMap.forEach((key, value) {
       if (format.contains(key)) {
         valueRange = value;
@@ -201,10 +203,10 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   }
 
   Widget _renderDatePickerColumnComponent(
-    FixedExtentScrollController scrollCtrl,
-    List<int> valueRange,
+    FixedExtentScrollController? scrollCtrl,
+    List<int>? valueRange,
     String format,
-    ValueChanged<int> valueChanged,
+    ValueChanged<int>? valueChanged,
   ) {
     return Expanded(
       flex: 1,
@@ -217,9 +219,13 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           scrollController: scrollCtrl,
           itemExtent: widget.pickerTheme.itemHeight,
           onSelectedItemChanged: valueChanged,
-          childCount: valueRange.last - valueRange.first + 1,
-          itemBuilder: (context, index) =>
-              _renderDatePickerItemComponent(valueRange.first + index, format),
+          childCount: valueRange?.last == null || valueRange?.first == null
+              ? null
+              : valueRange!.last - valueRange.first + 1,
+          itemBuilder: (context, index) => valueRange?.first == null
+              ? null
+              : _renderDatePickerItemComponent(
+                  valueRange!.first + index, format),
         ),
       ),
     );
