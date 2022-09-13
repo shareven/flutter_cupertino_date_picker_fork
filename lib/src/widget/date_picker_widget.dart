@@ -61,6 +61,11 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
   Map<String, List<int>> _valueRangeMap = Map();
 
   bool _isChangeDateRange = false;
+  Map<String, int> _initialIndexMap = {
+    'y': -1,
+    'M': -1,
+    'd': -1,
+  };
 
   _DatePickerWidgetState(
       DateTime? minDateTime, DateTime? maxDateTime, DateTime? initialDateTime) {
@@ -196,6 +201,14 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
           }
         },
       );
+
+      if ((_initialIndexMap[format[0]] ?? -1) > -1) {
+        Future.microtask(() {
+          _findScrollCtrl(format[0])?.jumpToItem(_initialIndexMap[format[0]]!);
+          _initialIndexMap[format[0]] = -1;
+        });
+      }
+
       pickers.add(pickerColumn);
     });
     return Row(
@@ -310,18 +323,22 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     if (monthRangeChanged) {
       // CupertinoPicker refresh data not working (https://github.com/flutter/flutter/issues/22999)
       int currMonth = _currMonth;
-      _monthScrollCtrl.jumpToItem(monthRange.last - monthRange.first);
+      // _monthScrollCtrl.jumpToItem(monthRange.last - monthRange.first);
+      _initialIndexMap['M'] = monthRange.last - monthRange.first;
       if (currMonth < monthRange.last) {
-        _monthScrollCtrl.jumpToItem(currMonth - monthRange.first);
+        _initialIndexMap['M'] = currMonth - monthRange.first;
+        // _monthScrollCtrl.jumpToItem(currMonth - monthRange.first);
       }
     }
 
     if (dayRangeChanged) {
       // CupertinoPicker refresh data not working (https://github.com/flutter/flutter/issues/22999)
       int currDay = _currDay;
-      _dayScrollCtrl.jumpToItem(dayRange.last - dayRange.first);
+      // _dayScrollCtrl.jumpToItem(dayRange.last - dayRange.first);
+      _initialIndexMap['d'] = dayRange.last - dayRange.first;
       if (currDay < dayRange.last) {
-        _dayScrollCtrl.jumpToItem(currDay - dayRange.first);
+        // _dayScrollCtrl.jumpToItem(currDay - dayRange.first);
+        _initialIndexMap['d'] = currDay - dayRange.first;
       }
     }
 
