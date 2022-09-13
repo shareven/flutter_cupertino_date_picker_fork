@@ -306,7 +306,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
     if (dayRangeChanged) {
       // day range changed, need limit the value of selected day
       if (!widget.onMonthChangeStartWithFirstDate) {
-        max(min(_currDay, dayRange.last), dayRange.first);
+        _currDay = max(min(_currDay, dayRange.last), dayRange.first);
       } else {
         _currDay = dayRange.first;
       }
