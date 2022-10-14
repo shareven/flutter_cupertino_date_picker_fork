@@ -16,7 +16,7 @@ Add this to you package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_cupertino_date_picker_fork: ^1.0.6
+  flutter_cupertino_date_picker_fork: ^1.0.7
 ```
 
 #### 2\. Install
