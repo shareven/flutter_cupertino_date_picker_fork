@@ -25,3 +25,7 @@
 ## [1.0.6] 
 
 * change readme.md
+
+## [1.0.7] 
+
+* fix some bugs
