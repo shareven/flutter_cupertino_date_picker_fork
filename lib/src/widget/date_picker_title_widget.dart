@@ -28,6 +28,7 @@ class DatePickerTitleWidget extends StatelessWidget {
     }
     return Container(
       height: pickerTheme.titleHeight,
+      padding: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(color: pickerTheme.backgroundColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
