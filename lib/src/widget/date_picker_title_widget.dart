@@ -28,6 +28,7 @@ class DatePickerTitleWidget extends StatelessWidget {
     }
     return Container(
       height: pickerTheme.titleHeight,
+      padding: EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(color: pickerTheme.backgroundColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,9 +64,9 @@ class DatePickerTitleWidget extends StatelessWidget {
 
     return Container(
       height: pickerTheme.titleHeight,
-      child: TextButton(
+      child: GestureDetector(
         child: cancelWidget,
-        onPressed: () => this.onCancel(),
+        onTap: () => this.onCancel(),
       ),
     );
   }
@@ -94,9 +95,9 @@ class DatePickerTitleWidget extends StatelessWidget {
 
     return Container(
       height: pickerTheme.titleHeight,
-      child: TextButton(
+      child: GestureDetector(
         child: confirmWidget,
-        onPressed: () => this.onConfirm(),
+        onTap: () => this.onConfirm(),
       ),
     );
   }
