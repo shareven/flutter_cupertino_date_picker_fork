@@ -67,7 +67,10 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
 
   bool _isChangeTimeRange = false;
 
-  final DateTime _baselineDate = DateTime(1900, 1, 1);
+  static final DateTime _baselineDate = DateTime.utc(1900, 1, 1);
+
+  static DateTime _toUtcDate(DateTime dt) =>
+      DateTime.utc(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
 
   _DateTimePickerWidgetState(DateTime? minTime, DateTime? maxTime,
       DateTime? initTime, int minuteDivider) {
@@ -91,8 +94,8 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
       initTime = maxTime;
     }
 
-    this._minTime = minTime;
-    this._maxTime = maxTime;
+    this._minTime = _toUtcDate(minTime);
+    this._maxTime = _toUtcDate(maxTime);
     this._currHour = initTime.hour;
     this._currMinute = initTime.minute;
     this._currSecond = initTime.second;
@@ -101,7 +104,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
 
     // limit the range of date
     this._dayRange = _calcDayRange();
-    int currDate = initTime.difference(_baselineDate).inDays;
+    int currDate = _toUtcDate(initTime).difference(_baselineDate).inDays;
     this._currDay = min(max(_dayRange.first, currDate), _dayRange.last);
 
     // limit the range of hour
