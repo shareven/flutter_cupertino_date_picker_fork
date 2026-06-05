@@ -28,8 +28,9 @@ class _TimePickerBottomSheetState extends State<TimePickerBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     TextStyle hintTextStyle =
-        Theme.of(context).textTheme.titleMedium!.apply(color: Color(0xFF999999));
+        Theme.of(context).textTheme.titleMedium!.apply(color: cs.onSurfaceVariant);
     return Scaffold(
       appBar: AppBar(title: Text('TimePicker Bottom Sheet')),
       body: Container(
@@ -110,7 +111,6 @@ class _TimePickerBottomSheetState extends State<TimePickerBottomSheet> {
               decoration: InputDecoration(
                 labelText: 'Formatter',
                 hintText: 'HH:mm:ss / H-m / H时.m分',
-                hintStyle: TextStyle(color: Colors.black26),
               ),
               onChanged: (value) => _format = value,
             ),
@@ -154,13 +154,13 @@ class _TimePickerBottomSheetState extends State<TimePickerBottomSheet> {
       pickerMode: DateTimePickerMode.time, // show TimePicker
       pickerTheme: DateTimePickerTheme(
         title: Container(
-          decoration: BoxDecoration(color: Color(0xFFEFEFEF)),
+          decoration: BoxDecoration(color: Colors.green.shade100),
           width: double.infinity,
           height: 56.0,
           alignment: Alignment.center,
           child: Text(
             'custom Title',
-            style: TextStyle(color: Colors.green, fontSize: 24.0),
+            style: TextStyle(color: Colors.green.shade800, fontSize: 24.0),
           ),
         ),
         titleHeight: 56.0,

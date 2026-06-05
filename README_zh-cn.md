@@ -1,6 +1,11 @@
 # Flutter Cupertino Date Picker
 
-[[Pub Packages]](https://pub.dartlang.org/packages/flutter_cupertino_date_picker)
+[[fork packages flutter_cupertino_date_picker]](https://pub.dartlang.org/packages/flutter_cupertino_date_picker)
+
+1. 解决 Flutter 1.20.0 不支持 DiagnosticableMixin 的错误；
+
+2. 支持深色模式主题
+
 
 Flutter 的日期选择器控件，iOS 样式。
 
@@ -14,7 +19,7 @@ Flutter 的日期选择器控件，iOS 样式。
 
 ```yaml
 dependencies:
-  flutter_cupertino_date_picker_fork: ^1.0.7
+  flutter_cupertino_date_picker_fork: ^1.1.0
 ```
 
 #### 2\. 获取包
@@ -37,10 +42,9 @@ import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker
 
 ##### BottomSheet形式
 
-
 ```dart
 /// 显示BottomSheet形式的日期时间选择器。
-/// 
+///
 /// context: [BuildContext]
 /// minDateTime: [DateTime] 日期选择器的最小值
 /// maxDateTime: [DateTime] 日期选择器的最大值
@@ -54,19 +58,21 @@ import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker
 /// onChange: [DateValueCallback] 选择的日期时间改变的事件
 /// onConfirm: [DateValueCallback] 点击标题确定按钮的回调事件
 DatePicker.showDatePicker(
-  BuildContext context,
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-  DateTimePickerMode pickerMode: DateTimePickerMode.date,
-  DateTimePickerTheme pickerTheme: DatePickerTheme.Default,
-  DateVoidCallback onCancel,
-  DateVoidCallback onClose,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-});
+  context,
+  minDateTime: DateTime(2019, 1, 1),
+  maxDateTime: DateTime(2021, 12, 31),
+  initialDateTime: DateTime(2020, 6, 15),
+  dateFormat: 'yyyy-MMMM-dd',
+  locale: DateTimePickerLocale.en_us,
+  pickerMode: DateTimePickerMode.date,
+  pickerTheme: DateTimePickerTheme.Default,
+  minuteDivider: 1,
+  onMonthChangeStartWithFirstDate: false,
+  onCancel: () => print('cancel'),
+  onClose: () => print('close'),
+  onChange: (dateTime, index) => print('$dateTime'),
+  onConfirm: (dateTime, index) => print('$dateTime'),
+);
 ```
 
 ##### 日期选择器控件，可以在页面上显示
@@ -83,24 +89,23 @@ DatePicker.showDatePicker(
 /// onCancel: [DateVoidCallback] 点击标题取消按钮的回调事件
 /// onChange: [DateValueCallback] 选择的日期时间改变的事件
 /// onConfirm: [DateValueCallback] 点击标题确定按钮的回调事件
-DatePickerWidget({
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat: DATETIME_PICKER_DATE_FORMAT,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-  DateTimePickerTheme pickerTheme: DatePickerTheme.Default,
-  DateVoidCallback onCancel,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-})
+DatePickerWidget(
+  minDateTime: DateTime(2019, 1, 1),
+  maxDateTime: DateTime(2021, 12, 31),
+  initialDateTime: DateTime(2020, 6, 15),
+  dateFormat: 'yyyy-MMMM-dd',
+  locale: DateTimePickerLocale.en_us,
+  pickerTheme: DateTimePickerTheme.Default,
+  onChange: (dateTime, selectedIndex) { },
+  onConfirm: (dateTime, selectedIndex) { },
+)
 ```
 
 ##### TimePicker Widget
 
 ```dart
 /// 显示时间选择器
-/// 
+///
 /// minDateTime: [DateTime] 日期选择器的最小值
 /// maxDateTime: [DateTime] 日期选择器的最大值
 /// initialDateTime: [DateTime] 日期选择器的初始值
@@ -111,25 +116,24 @@ DatePickerWidget({
 /// onCancel: [DateVoidCallback] 点击标题取消按钮的回调事件
 /// onChange: [DateValueCallback] 选择的日期时间改变的事件
 /// onConfirm: [DateValueCallback] 点击标题确定按钮的回调事件
-TimePickerWidget({
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat: DATETIME_PICKER_DATE_FORMAT,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-  DateTimePickerTheme pickerTheme: DatePickerTheme.Default,
-  int minuteDivider: 1,
-  DateVoidCallback onCancel,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-})
+TimePickerWidget(
+  minDateTime: DateTime(2019, 1, 1, 8, 0),
+  maxDateTime: DateTime(2021, 12, 31, 22, 0),
+  initDateTime: DateTime(2020, 6, 15, 14, 30),
+  dateFormat: 'HH:mm',
+  locale: DateTimePickerLocale.en_us,
+  pickerTheme: DateTimePickerTheme.Default,
+  minuteDivider: 1,
+  onChange: (dateTime, selectedIndex) { },
+  onConfirm: (dateTime, selectedIndex) { },
+)
 ```
 
 ##### DateTimePicker Widget
 
 ```dart
 /// 显示日期时间选择器
-/// 
+///
 /// minDateTime: [DateTime] 日期选择器的最小值
 /// maxDateTime: [DateTime] 日期选择器的最大值
 /// initialDateTime: [DateTime] 日期选择器的初始值
@@ -139,17 +143,16 @@ TimePickerWidget({
 /// onCancel: [DateVoidCallback] 点击标题取消按钮的回调事件
 /// onChange: [DateValueCallback] 选择的日期时间改变的事件
 /// onConfirm: [DateValueCallback] 点击标题确定按钮的回调事件
-DateTimePickerWidget({
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat: DATETIME_PICKER_DATE_FORMAT,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-  DateTimePickerTheme pickerTheme: DatePickerTheme.Default,
-  DateVoidCallback onCancel,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-})
+DateTimePickerWidget(
+  minDateTime: DateTime(2019, 1, 1),
+  maxDateTime: DateTime(2021, 12, 31),
+  initDateTime: DateTime(2020, 6, 15),
+  dateFormat: 'yyyy-MM-dd HH:mm',
+  locale: DateTimePickerLocale.en_us,
+  pickerTheme: DateTimePickerTheme.Default,
+  onChange: (dateTime, selectedIndex) { },
+  onConfirm: (dateTime, selectedIndex) { },
+)
 ```
 
 #### 5\. DateTimePickerLocale
@@ -280,12 +283,14 @@ const Map<DateTimePickerLocale, _StringsI18n> datePickerI18n = {
 
 #### 7\. DateTimePickerTheme
 
+所有颜色/样式字段都是可空的。传入部分主题时，**缺失的值会自动从 `Theme.of(context)` 解析**，同时支持浅色和深色模式。
+
 ```dart
 /// 日期时间选择器的样式
 ///
-/// [backgroundColor] 背景色
-/// [cancelTextStyle] 默认标题栏取消按钮的样式 [TextStyle]
-/// [confirmTextStyle] 默认标题栏确定按钮的样式 [TextStyle]
+/// [backgroundColor] 背景色。null = 自动（白色 / 深色背景）。
+/// [cancelTextStyle] 默认标题栏取消按钮的样式 [TextStyle]。null = 自动。
+/// [confirmTextStyle] 默认标题栏确定按钮的样式 [TextStyle]。null = 自动。
 /// [cancel] 自定义标题栏取消按钮
 /// [confirm] 自定义标题栏确定按钮
 /// [title] 自定义标题栏。如果指定了自定义标题栏，不显示默认的标题栏。指定自定义的标题栏时必须指定 [titleHeight] 的值
@@ -293,18 +298,38 @@ const Map<DateTimePickerLocale, _StringsI18n> datePickerI18n = {
 /// [pickerHeight] 日期选择器的高度
 /// [titleHeight] 标题栏的高度
 /// [itemHeight] 选择器每一行的高度
-/// [itemTextStyle] 选择器每一行的样式 [TextStyle]
+/// [itemTextStyle] 选择器每一行的样式 [TextStyle]。null = 自动。
 const DateTimePickerTheme({
-  this.backgroundColor: DATETIME_PICKER_BACKGROUND_COLOR,
+  this.backgroundColor,
   this.cancelTextStyle,
   this.confirmTextStyle,
   this.cancel,
   this.confirm,
   this.title,
-  this.showTitle: DATETIME_PICKER_SHOW_TITLE_DEFAULT,
-  this.pickerHeight: DATETIME_PICKER_HEIGHT,
-  this.titleHeight: DATETIME_PICKER_TITLE_HEIGHT,
-  this.itemHeight: DATETIME_PICKER_ITEM_HEIGHT,
-  this.itemTextStyle: DATETIME_PICKER_ITEM_TEXT_STYLE,
+  this.showTitle = true,
+  this.pickerHeight = 210.0,
+  this.titleHeight = 44.0,
+  this.itemHeight = 36.0,
+  this.itemTextStyle,
 });
 ```
+
+##### 深色模式
+
+`DateTimePickerTheme.of(context)` 读取 `Theme.of(context)` 为深色模式生成正确的默认值。`showDatePicker` 入口和所有 widget 会自动调用 `resolve(context)`，所以你**无需任何额外配置** —— 只要 app 的 `ThemeData` 设置了 `brightness: Brightness.dark`，就能自动适配。
+
+如果只提供部分覆盖，未指定的字段仍然会自动适应当前主题：
+
+```dart
+DatePicker.showDatePicker(
+  context,
+  minDateTime: ...,
+  maxDateTime: ...,
+  pickerTheme: DateTimePickerTheme(
+    backgroundColor: Colors.blue.shade50,  // 显式指定
+    // cancelTextStyle, confirmTextStyle, itemTextStyle → 自动解析
+  ),
+);
+```
+
+[1]: ./example/output/demo.gif

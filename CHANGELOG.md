@@ -29,3 +29,8 @@
 ## [1.0.7] 
 
 * fix some bugs
+
+## [1.1.0] 
+
+* add some dark theme support
+* fix some bugs

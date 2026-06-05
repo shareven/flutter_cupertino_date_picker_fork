@@ -195,7 +195,10 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
       onMonthChangeStartWithFirstDate: true,
       pickerTheme: DateTimePickerTheme(
         showTitle: _showTitle,
-        confirm: Text('custom Done', style: TextStyle(color: Colors.red)),
+        confirm: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text('custom Done', style: TextStyle(color: Colors.red)),
+        ),
       ),
       minDateTime: DateTime.parse(MIN_DATETIME),
       maxDateTime: DateTime.parse(MAX_DATETIME),

@@ -53,6 +53,7 @@ class DatePicker {
     int minuteDivider = 1,
     bool onMonthChangeStartWithFirstDate = false,
   }) {
+    pickerTheme = pickerTheme.resolve(context);
     // handle the range of datetime
     if (minDateTime == null) {
       minDateTime = DateTime.parse(DATE_PICKER_MIN_DATETIME);

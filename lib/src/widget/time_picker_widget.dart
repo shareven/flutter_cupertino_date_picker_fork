@@ -112,8 +112,11 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
     _valueRangeMap = {'H': _hourRange, 'm': _minuteRange, 's': _secondRange};
   }
 
+  late DateTimePickerTheme _resolvedTheme;
+
   @override
   Widget build(BuildContext context) {
+    _resolvedTheme = widget.pickerTheme.resolve(context);
     return GestureDetector(
       child: Material(
           color: Colors.transparent, child: _renderPickerView(context)),
@@ -125,11 +128,11 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
     Widget pickerWidget = _renderDatePickerWidget();
 
     // display the title widget
-    if (widget.pickerTheme.title != null || widget.pickerTheme.showTitle) {
+    if (_resolvedTheme.title != null || _resolvedTheme.showTitle) {
       Widget titleWidget = DatePickerTitleWidget(
         () => _onPressedCancel(),
         () => _onPressedConfirm(),
-        pickerTheme: widget.pickerTheme,
+        pickerTheme: _resolvedTheme,
         locale: widget.locale,
       );
       return Column(children: <Widget>[titleWidget, pickerWidget]);
@@ -228,12 +231,12 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
       flex: 1,
       child: Container(
         padding: EdgeInsets.all(8.0),
-        height: widget.pickerTheme.pickerHeight,
-        decoration: BoxDecoration(color: widget.pickerTheme.backgroundColor),
+        height: _resolvedTheme.pickerHeight,
+        decoration: BoxDecoration(color: _resolvedTheme.backgroundColor),
         child: CupertinoPicker.builder(
-          backgroundColor: widget.pickerTheme.backgroundColor,
+          backgroundColor: _resolvedTheme.backgroundColor,
           scrollController: scrollCtrl,
-          itemExtent: widget.pickerTheme.itemHeight,
+          itemExtent: _resolvedTheme.itemHeight,
           onSelectedItemChanged: valueChanged,
           childCount: format.contains('m')
               ? _calculateMinuteChildCount(valueRange, minuteDivider)
@@ -263,12 +266,12 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
 
   Widget _renderDatePickerItemComponent(int value, String format) {
     return Container(
-      height: widget.pickerTheme.itemHeight,
+      height: _resolvedTheme.itemHeight,
       alignment: Alignment.center,
       child: Text(
         DateTimeFormatter.formatDateTime(value, format, widget.locale),
         style:
-            widget.pickerTheme.itemTextStyle ?? DATETIME_PICKER_ITEM_TEXT_STYLE,
+            _resolvedTheme.itemTextStyle ?? const TextStyle(color: Color(0xFF000046), fontSize: 16.0),
       ),
     );
   }

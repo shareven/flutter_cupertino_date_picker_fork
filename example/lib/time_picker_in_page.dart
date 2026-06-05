@@ -28,12 +28,12 @@ class _TimePickerInPageState extends State<TimePickerInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     TextStyle hintTextStyle =
-        Theme.of(context).textTheme.titleMedium!.apply(color: Color(0xFF999999));
+        Theme.of(context).textTheme.titleMedium!.apply(color: cs.onSurfaceVariant);
     return Scaffold(
       appBar: AppBar(title: Text("TimePicker In Page")),
       body: Container(
-        decoration: BoxDecoration(color: Colors.white),
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
@@ -107,7 +107,7 @@ class _TimePickerInPageState extends State<TimePickerInPage> {
                 dateFormat: DATE_FORMAT,
                 minuteDivider: 15,
                 pickerTheme: DateTimePickerTheme(
-                    showTitle: false, backgroundColor: Color(0xFFe1bee7)),
+                    showTitle: false, backgroundColor: cs.tertiaryContainer),
                 onChange: (dateTime, selectedIndex) {
                   setState(() {
                     _dateTime = dateTime;

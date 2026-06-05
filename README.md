@@ -2,7 +2,9 @@
 
 [[fork packages flutter_cupertino_date_picker]](https://pub.dartlang.org/packages/flutter_cupertino_date_picker)
 
-Solve the error of flutter1.20.0 :not support DiagnosticableMixin;
+1. Solve the error of flutter1.20.0 :not support DiagnosticableMixin;
+
+2. Support Dark Mode theme
 
 Flutter cupertino date picker.
 
@@ -16,7 +18,7 @@ Add this to you package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_cupertino_date_picker_fork: ^1.0.7
+  flutter_cupertino_date_picker_fork: ^1.1.0
 ```
 
 #### 2\. Install
@@ -55,19 +57,21 @@ import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker
 /// onChange: [DateValueCallback] selected date time changed event
 /// onConfirm: [DateValueCallback] pressed title confirm widget event
 DatePicker.showDatePicker(
-  BuildContext context,
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-  DateTimePickerMode pickerMode: DateTimePickerMode.date,
-  DateTimePickerTheme pickerTheme: DatePickerTheme.Default,
-  DateVoidCallback onCancel,
-  DateVoidCallback onClose,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-});
+  context,
+  minDateTime: DateTime(2019, 1, 1),
+  maxDateTime: DateTime(2021, 12, 31),
+  initialDateTime: DateTime(2020, 6, 15),
+  dateFormat: 'yyyy-MMMM-dd',
+  locale: DateTimePickerLocale.en_us,
+  pickerMode: DateTimePickerMode.date,
+  pickerTheme: DateTimePickerTheme.Default,
+  minuteDivider: 1,
+  onMonthChangeStartWithFirstDate: false,
+  onCancel: () => print('cancel'),
+  onClose: () => print('close'),
+  onChange: (dateTime, index) => print('$dateTime'),
+  onConfirm: (dateTime, index) => print('$dateTime'),
+);
 ```
 
 ##### DatePicker Widget
@@ -84,17 +88,16 @@ DatePicker.showDatePicker(
 /// onCancel: [DateVoidCallback] pressed title cancel widget event
 /// onChange: [DateValueCallback] selected date time changed event
 /// onConfirm: [DateValueCallback] pressed title confirm widget event
-DatePickerWidget({
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat: DATETIME_PICKER_DATE_FORMAT,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-  DateTimePickerTheme pickerTheme: DatePickerTheme.Default,
-  DateVoidCallback onCancel,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-})
+DatePickerWidget(
+  minDateTime: DateTime(2019, 1, 1),
+  maxDateTime: DateTime(2021, 12, 31),
+  initialDateTime: DateTime(2020, 6, 15),
+  dateFormat: 'yyyy-MMMM-dd',
+  locale: DateTimePickerLocale.en_us,
+  pickerTheme: DateTimePickerTheme.Default,
+  onChange: (dateTime, selectedIndex) { },
+  onConfirm: (dateTime, selectedIndex) { },
+)
 ```
 
 ##### TimePicker Widget
@@ -112,18 +115,17 @@ DatePickerWidget({
 /// onCancel: [DateVoidCallback] pressed title cancel widget event
 /// onChange: [DateValueCallback] selected date time changed event
 /// onConfirm: [DateValueCallback] pressed title confirm widget event
-TimePickerWidget({
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat: DATETIME_PICKER_DATE_FORMAT,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-  DateTimePickerTheme pickerTheme: DatePickerTheme.Default,
-  int minuteDivider: 1,
-  DateVoidCallback onCancel,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-})
+TimePickerWidget(
+  minDateTime: DateTime(2019, 1, 1, 8, 0),
+  maxDateTime: DateTime(2021, 12, 31, 22, 0),
+  initDateTime: DateTime(2020, 6, 15, 14, 30),
+  dateFormat: 'HH:mm',
+  locale: DateTimePickerLocale.en_us,
+  pickerTheme: DateTimePickerTheme.Default,
+  minuteDivider: 1,
+  onChange: (dateTime, selectedIndex) { },
+  onConfirm: (dateTime, selectedIndex) { },
+)
 ```
 
 ##### DateTimePicker Widget
@@ -140,17 +142,16 @@ TimePickerWidget({
 /// onCancel: [DateVoidCallback] pressed title cancel widget event
 /// onChange: [DateValueCallback] selected date time changed event
 /// onConfirm: [DateValueCallback] pressed title confirm widget event
-DateTimePickerWidget({
-  DateTime minDateTime,
-  DateTime maxDateTime,
-  DateTime initialDateTime,
-  String dateFormat: DATETIME_PICKER_DATE_FORMAT,
-  DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-  DateTimePickerTheme pickerTheme: DatePickerTheme.Default,
-  DateVoidCallback onCancel,
-  DateValueCallback onChange,
-  DateValueCallback onConfirm,
-})
+DateTimePickerWidget(
+  minDateTime: DateTime(2019, 1, 1),
+  maxDateTime: DateTime(2021, 12, 31),
+  initDateTime: DateTime(2020, 6, 15),
+  dateFormat: 'yyyy-MM-dd HH:mm',
+  locale: DateTimePickerLocale.en_us,
+  pickerTheme: DateTimePickerTheme.Default,
+  onChange: (dateTime, selectedIndex) { },
+  onConfirm: (dateTime, selectedIndex) { },
+)
 ```
 
 #### 5\. DateTimePickerLocale
@@ -281,12 +282,14 @@ Support separator: `|,-/\._: `.
 
 #### 7\. DateTimePickerTheme
 
+All color/style fields are nullable. When you pass a partial theme, **missing values are resolved automatically** from `Theme.of(context)`, supporting both light and dark mode out of the box.
+
 ```dart
 /// DateTimePicker theme.
 ///
-/// [backgroundColor] DatePicker's background color.
-/// [cancelTextStyle] Default cancel widget's [TextStyle].
-/// [confirmTextStyle] Default confirm widget's [TextStyle].
+/// [backgroundColor] DatePicker's background color. null = auto (white / dark surface).
+/// [cancelTextStyle] Default cancel widget's [TextStyle]. null = auto.
+/// [confirmTextStyle] Default confirm widget's [TextStyle]. null = auto.
 /// [cancel] Custom cancel widget.
 /// [confirm] Custom confirm widget.
 /// [title] Custom title widget. If specify a title widget, the cancel and confirm widgets will not display. Must set [titleHeight] value for custom title widget.
@@ -294,18 +297,38 @@ Support separator: `|,-/\._: `.
 /// [pickerHeight] The value of DatePicker's height.
 /// [titleHeight] The value of DatePicker's title height.
 /// [itemHeight] The value of DatePicker's column height.
-/// [itemTextStyle] The value of DatePicker's column [TextStyle].
+/// [itemTextStyle] The value of DatePicker's column [TextStyle]. null = auto.
 const DateTimePickerTheme({
-  this.backgroundColor: DATETIME_PICKER_BACKGROUND_COLOR,
+  this.backgroundColor,
   this.cancelTextStyle,
   this.confirmTextStyle,
   this.cancel,
   this.confirm,
   this.title,
-  this.showTitle: DATETIME_PICKER_SHOW_TITLE_DEFAULT,
-  this.pickerHeight: DATETIME_PICKER_HEIGHT,
-  this.titleHeight: DATETIME_PICKER_TITLE_HEIGHT,
-  this.itemHeight: DATETIME_PICKER_ITEM_HEIGHT,
-  this.itemTextStyle: DATETIME_PICKER_ITEM_TEXT_STYLE,
+  this.showTitle = true,
+  this.pickerHeight = 210.0,
+  this.titleHeight = 44.0,
+  this.itemHeight = 36.0,
+  this.itemTextStyle,
 });
 ```
+
+##### Dark Mode
+
+`DateTimePickerTheme.of(context)` reads `Theme.of(context)` to produce correct defaults for dark mode. The `showDatePicker` entry point and all widgets call `resolve(context)` automatically, so **you don't need to do anything** — it just works when your app's `ThemeData` has `brightness: Brightness.dark`.
+
+If you provide partial overrides, unspecified fields still adapt to the current theme:
+
+```dart
+DatePicker.showDatePicker(
+  context,
+  minDateTime: ...,
+  maxDateTime: ...,
+  pickerTheme: DateTimePickerTheme(
+    backgroundColor: Colors.blue.shade50,  // explicit
+    // cancelTextStyle, confirmTextStyle, itemTextStyle → auto-resolved
+  ),
+);
+```
+
+[1]: ./example/output/demo.gif

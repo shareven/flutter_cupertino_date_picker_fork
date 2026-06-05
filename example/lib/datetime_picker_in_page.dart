@@ -28,12 +28,12 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     TextStyle hintTextStyle =
-        Theme.of(context).textTheme.titleMedium!.apply(color: Color(0xFF999999));
+        Theme.of(context).textTheme.titleMedium!.apply(color: cs.onSurfaceVariant);
     return Scaffold(
       appBar: AppBar(title: Text("DateTimePicker In Page")),
       body: Container(
-        decoration: BoxDecoration(color: Colors.white),
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
@@ -133,10 +133,11 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
                     width: double.infinity,
                     height: 40.0,
                     alignment: Alignment.center,
-                    child: Text('Date Time Picker Title'),
-                    decoration: BoxDecoration(color: Color(0xFFc0ca33)),
+                    child: Text('Date Time Picker Title',
+                        style: TextStyle(color: cs.onTertiaryContainer)),
+                    decoration: BoxDecoration(color: cs.tertiaryContainer),
                   ),
-                  backgroundColor: Color(0xFFf0f4c3),
+                  backgroundColor: cs.tertiaryContainer,
                 ),
                 onChange: (dateTime, selectedIndex) {
                   setState(() {
