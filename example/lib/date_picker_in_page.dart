@@ -113,7 +113,7 @@ DateTimePickerTheme(
         confirmTextStyle: TextStyle(color: Colors.black),
         itemTextStyle: TextStyle(color: Colors.deepOrange),
         pickerHeight: 300.0,
-        titleHeight: 24.0,
+        titleHeight: 32.0,
         itemHeight: 30.0,
 )
                     ''',
@@ -158,7 +158,7 @@ DateTimePickerTheme(
                   confirmTextStyle: TextStyle(color: Colors.black),
                   itemTextStyle: TextStyle(color: Colors.deepOrange),
                   pickerHeight: 300.0,
-                  titleHeight: 24.0,
+                  titleHeight: 32.0,
                   itemHeight: 30.0,
                 ),
                 onChange: (dateTime, selectedIndex) {
