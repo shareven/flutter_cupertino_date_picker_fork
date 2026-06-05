@@ -5,16 +5,18 @@ packages:
     dependency: transitive
     description:
       name: characters
-      url: "https://pub.dartlang.org"
+      sha256: f71061c654a3380576a52b451dd5532377954cf9dbd272a78fc8479606670803
+      url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.2.1"
+    version: "1.4.0"
   collection:
     dependency: transitive
     description:
       name: collection
-      url: "https://pub.dartlang.org"
+      sha256: "2f5709ae4d3d59dd8f7cd309b4e023046b57d8a6c82130785d2b0e5868084e76"
+      url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.16.0"
+    version: "1.19.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -24,28 +26,31 @@ packages:
     dependency: transitive
     description:
       name: material_color_utilities
-      url: "https://pub.dartlang.org"
+      sha256: f7142bb1154231d7ea5f96bc7bde4bda2a0945d2806bb11670e30b850d56bdec
+      url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.1.5"
+    version: "0.11.1"
   meta:
     dependency: transitive
     description:
       name: meta
-      url: "https://pub.dartlang.org"
+      sha256: "23f08335362185a5ea2ad3a4e597f1375e78bce8a040df5c600c8d3552ef2394"
+      url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.8.0"
+    version: "1.17.0"
   sky_engine:
     dependency: transitive
     description: flutter
     source: sdk
-    version: "0.0.99"
+    version: "0.0.0"
   vector_math:
     dependency: transitive
     description:
       name: vector_math
-      url: "https://pub.dartlang.org"
+      sha256: d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b
+      url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "2.1.2"
+    version: "2.2.0"
 sdks:
-  dart: ">=2.17.0-0 <3.0.0"
+  dart: ">=3.8.0-0 <4.0.0"
   flutter: ">=1.20.0"

@@ -59,13 +59,21 @@ class DatePickerTitleWidget extends StatelessWidget {
         DatePickerI18n.getLocaleCancel(locale),
         style: textStyle,
       );
+      return Container(
+        height: pickerTheme.titleHeight,
+        child: TextButton(
+          child: cancelWidget,
+          onPressed: () => this.onCancel(),
+        ),
+      );
     }
 
-    return Container(
-      height: pickerTheme.titleHeight,
-      child: TextButton(
+    return GestureDetector(
+      onTap: () => this.onCancel(),
+      child: Container(
+        height: pickerTheme.titleHeight,
+        alignment: Alignment.center,
         child: cancelWidget,
-        onPressed: () => this.onCancel(),
       ),
     );
   }
@@ -90,13 +98,21 @@ class DatePickerTitleWidget extends StatelessWidget {
         DatePickerI18n.getLocaleDone(locale) ?? '',
         style: textStyle,
       );
+      return Container(
+        height: pickerTheme.titleHeight,
+        child: TextButton(
+          child: confirmWidget,
+          onPressed: () => this.onConfirm(),
+        ),
+      );
     }
 
-    return Container(
-      height: pickerTheme.titleHeight,
-      child: TextButton(
+    return GestureDetector(
+      onTap: () => this.onConfirm(),
+      child: Container(
+        height: pickerTheme.titleHeight,
+        alignment: Alignment.center,
         child: confirmWidget,
-        onPressed: () => this.onConfirm(),
       ),
     );
   }
