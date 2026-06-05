@@ -41,14 +41,9 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Radio(
+            Radio<DateTimePickerLocale>(
               value: locale,
-              groupValue: _locale,
-              onChanged: (DateTimePickerLocale? value) {
-                setState(() {
-                  _locale = value!;
-                });
-              },
+              toggleable: true,
             ),
             Text(locale
                 .toString()
@@ -59,7 +54,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
     });
 
     TextStyle hintTextStyle =
-        Theme.of(context).textTheme.subtitle1!.apply(color: Color(0xFF999999));
+        Theme.of(context).textTheme.titleMedium!.apply(color: Color(0xFF999999));
     return Scaffold(
       appBar: AppBar(title: Text('DatePicker Bottom Sheet')),
       body: Container(
@@ -76,7 +71,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
                     child: Text('min DateTime:', style: hintTextStyle),
                   ),
                   Text(MIN_DATETIME,
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
             ),
@@ -90,7 +85,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
                       width: 115.0,
                       child: Text('max DateTime:', style: hintTextStyle)),
                   Text(MAX_DATETIME,
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
             ),
@@ -104,7 +99,7 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
                       width: 115.0,
                       child: Text('init DateTime:', style: hintTextStyle)),
                   Text(INIT_DATETIME,
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
             ),
@@ -146,7 +141,19 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text('Locale: '),
-                  Wrap(direction: Axis.horizontal, children: radios)
+                  Wrap(
+                      direction: Axis.horizontal,
+                      children: [
+                        RadioGroup<DateTimePickerLocale>(
+                          groupValue: _locale,
+                          onChanged: (DateTimePickerLocale? value) {
+                            setState(() {
+                              _locale = value!;
+                            });
+                          },
+                          child: Wrap(children: radios),
+                        )
+                      ])
                 ],
               ),
             ),
@@ -158,12 +165,12 @@ class _DatePickerBottomSheetState extends State<DatePickerBottomSheet> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text('Selected Date:',
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                   Container(
                     padding: EdgeInsets.only(left: 12.0),
                     child: Text(
                       '${_dateTime!.year}-${_dateTime!.month.toString().padLeft(2, '0')}-${_dateTime!.day.toString().padLeft(2, '0')}',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ),
                 ],

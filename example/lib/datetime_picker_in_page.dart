@@ -29,7 +29,7 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
   @override
   Widget build(BuildContext context) {
     TextStyle hintTextStyle =
-        Theme.of(context).textTheme.subtitle1!.apply(color: Color(0xFF999999));
+        Theme.of(context).textTheme.titleMedium!.apply(color: Color(0xFF999999));
     return Scaffold(
       appBar: AppBar(title: Text("DateTimePicker In Page")),
       body: Container(
@@ -47,7 +47,7 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
                     child: Text('min DateTime:', style: hintTextStyle),
                   ),
                   Text(MIN_DATETIME,
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
             ),
@@ -62,7 +62,7 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
                     child: Text('max DateTime:', style: hintTextStyle),
                   ),
                   Text(MAX_DATETIME,
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
             ),
@@ -77,7 +77,7 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
                     child: Text('init DateTime:', style: hintTextStyle),
                   ),
                   Text(INIT_DATETIME,
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
             ),
@@ -92,7 +92,7 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
                     child: Text('Date Format:', style: hintTextStyle),
                   ),
                   Text(DATE_FORMAT,
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
             ),
@@ -114,7 +114,7 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
                     margin: EdgeInsets.only(right: 8.0),
                     child: Text('custom title height:', style: hintTextStyle),
                   ),
-                  Text('40.0', style: Theme.of(context).textTheme.subtitle1),
+                  Text('40.0', style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
             ),
@@ -151,7 +151,7 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text('Selected DateTime:',
-                    style: Theme.of(context).textTheme.subtitle1),
+                    style: Theme.of(context).textTheme.titleMedium),
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.only(top: 4.0),
@@ -159,7 +159,7 @@ class _DateTimePickerInPageState extends State<DateTimePickerInPage> {
                     _dateTime != null
                         ? '${_dateTime!.year}-${_dateTime!.month.toString().padLeft(2, '0')}-${_dateTime!.day.toString().padLeft(2, '0')} ${_dateTime!.hour.toString().padLeft(2, '0')}:${_dateTime!.minute.toString().padLeft(2, '0')}:${_dateTime!.second.toString().padLeft(2, '0')}'
                         : '',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
               ],
